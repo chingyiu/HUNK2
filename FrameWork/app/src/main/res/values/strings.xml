@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Frame Work</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="pattern_info">T: 0 km/h \n
+                                W: &#60;1-10 \n
+                                S: 11-50 \n
+                                F: 51-80 \n
+                                E: &#60;80</string>
+    <string name="max_x">Maximum of | X |: </string>
+    <string name="max_y">Maximum of | Y |: </string>
+    <string name="max_z">Maximum of | Z |: </string>
+
+    <string-array name="route_array">
+        <item>2132B</item>
+        <item>Route 2</item>
+    </string-array>
+
+    <string-array name="route_array1">
+        <item>North Gate</item>
+        <item>Route 2</item>
+    </string-array>
+
+    <string name="eta">ETA: 18:10</string>
+
+    <string name="btn1">Record</string>
+</resources>

@@ -1,0 +1,119 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextView_cur_a"
+        android:text="cur_a"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextView_max_a"
+        android:text="max_a"
+        android:textSize="20sp" />
+
+
+
+
+
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="X"
+        android:id="@+id/TextView01"
+        android:textSize="25sp"
+        android:layout_margin="15sp" />
+
+    <!--
+    <TextView
+        android:text="@string/max_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    -->
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Y"
+        android:id="@+id/TextView02"
+        android:textSize="25sp"
+        android:layout_margin="15sp" />
+
+    <!--
+    <TextView
+        android:text="@string/max_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    -->
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Z"
+        android:id="@+id/TextView03"
+        android:textSize="25sp"
+        android:layout_margin="15sp" />
+
+    <!--
+    <TextView
+        android:text="@string/max_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    -->
+
+
+    <!--
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pattern_info"
+        android:textSize="25sp" />
+    -->
+
+    <!-- A dropdown list
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner1"
+        />
+    -->
+
+    <!--
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/eta"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn1"
+        android:id="@+id/btn1" />
+    -->
+
+
+</LinearLayout>
