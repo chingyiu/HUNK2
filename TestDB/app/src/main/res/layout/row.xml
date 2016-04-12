@@ -1,0 +1,50 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/movieTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Title"
+        android:textColor="#3399CC"
+        />
+
+    <TextView
+        android:id="@+id/textViewBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/movieTitle"
+        android:layout_alignBottom="@+id/movieTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/movieTitle"
+        android:textSize="10dp"
+        android:textStyle="italic"
+        android:textColor="#ccc"
+        android:text="by"
+        />
+
+    <TextView
+        android:id="@+id/movieGross"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Gross" />
+
+    <TextView
+        android:id="@+id/movieDirector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/movieTitle"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/textViewBy"
+        android:text="Director"
+        android:textColor="#999"
+        android:textSize="10dp"
+        android:textStyle="italic" />
+
+</RelativeLayout>

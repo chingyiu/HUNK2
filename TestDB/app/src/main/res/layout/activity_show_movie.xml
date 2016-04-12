@@ -1,0 +1,38 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textColor="#999"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            />
+        <TextView
+            android:id="@+id/showMovieTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:text="TITLE" />
+
+        <!--
+        put your extra layout components here
+        You can simply duplicate the codes above
+        and modify the android:id and android:text respectively
+         -->
+
+    </LinearLayout>
+</ScrollView>
