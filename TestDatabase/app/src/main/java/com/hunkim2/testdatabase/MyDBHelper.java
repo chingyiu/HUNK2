@@ -29,7 +29,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
 
 
     public final static String TABLE_TRIAL = "Trial"; //<-- table name
-    public static final String COLUMN_TRIAL_ID = COLUMN_USER_ROUTE_ID;
+    public static final String COLUMN_TRIAL_ID = "_id";
     public static final String COLUMN_TRIAL_START = "start_time";
     public static final String COLUMN_TRIAL_END = "end_time";
     public static final String COLUMN_TRIAL_STRINGS = "strings_of_speed";
@@ -37,30 +37,30 @@ public class MyDBHelper extends SQLiteOpenHelper{
 
     final String CREATE_TABLE_USER_ROUTE = "CREATE TABLE IF NOT EXISTS " + TABLE_USER_ROUTE
             + "( "
-            + COLUMN_USER_ROUTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_USER_ROUTE_START + " TEXT NOT NULL, "
-            + COLUMN_USER_ROUTE_END + " TEXT NOT NULL, "
-            + COLUMN_USER_ROUTE_ARRIVAL + " INTEGER, "
-            + COLUMN_USER_ROUTE_REPEAT + " BOOLEAN NOT NULL, "
-            + COLUMN_USER_ROUTE_MON + " BOOLEAN, "
-            + COLUMN_USER_ROUTE_TUE + " BOOLEAN, "
-            + COLUMN_USER_ROUTE_WED + " BOOLEAN, "
-            + COLUMN_USER_ROUTE_THU + " BOOLEAN, "
-            + COLUMN_USER_ROUTE_FRI + " BOOLEAN, "
-            + COLUMN_USER_ROUTE_SAT + " BOOLEAN, "
-            + COLUMN_USER_ROUTE_SUN + " BOOLEAN "
+            + COLUMN_USER_ROUTE_ID + " integer primary key autoincrement, "
+            + COLUMN_USER_ROUTE_START + " text not null, "
+            + COLUMN_USER_ROUTE_END + " text not null, "
+            + COLUMN_USER_ROUTE_ARRIVAL + " integer, "
+            + COLUMN_USER_ROUTE_REPEAT + " integer, "
+            + COLUMN_USER_ROUTE_MON + " integer, "
+            + COLUMN_USER_ROUTE_TUE + " integer, "
+            + COLUMN_USER_ROUTE_WED + " integer, "
+            + COLUMN_USER_ROUTE_THU + " integer, "
+            + COLUMN_USER_ROUTE_FRI + " integer, "
+            + COLUMN_USER_ROUTE_SAT + " integer, "
+            + COLUMN_USER_ROUTE_SUN + " integer "
             + ");";
 
     final String CREATE_TABLE_TRIAL = "CREATE TABLE IF NOT EXISTS " + TABLE_TRIAL
             + "( "
-            + COLUMN_TRIAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_TRIAL_START + " INTEGER NOT NULL, "
-            + COLUMN_TRIAL_END + " INTEGER NOT NULL, "
-            + COLUMN_TRIAL_STRINGS + " TEXT NOT NULL, "
-            + COLUMN_TRIAL_USERROUTE_ID + " INTEGER NOT NULL "
+            + COLUMN_TRIAL_ID + " integer primary key autoincrement, "
+            + COLUMN_TRIAL_START + " integer , "
+            + COLUMN_TRIAL_END + " integer, "
+            + COLUMN_TRIAL_STRINGS + " text not null, "
+            + COLUMN_TRIAL_USERROUTE_ID + " integer not null "
             + ");";
 
-    public MyDBHelper(Context context){
+    public MyDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -76,10 +76,26 @@ public class MyDBHelper extends SQLiteOpenHelper{
         // Testing purpose
         // hard code
         db.execSQL("INSERT INTO " + TABLE_USER_ROUTE + " VALUES ("
-                + "1, "
-                + "'Hang Hau', "
+                + "1, "             // ID
+                + "'Hang Hau', "    // Start
+                + "'HKUST', "       // end
+                + "1460434796, "    // arrival
+                + "0, "             // repeat
+                + "0, "             // mon
+                + "0, "             // tue
+                + "0, "             // wed
+                + "0, "             // thu
+                + "0, "             // fri
+                + "0, "             // sat
+                + "0 "              // sun
+                + ");"
+        );
+
+        db.execSQL("INSERT INTO " + TABLE_USER_ROUTE + " VALUES ("
+                + "2, "
+                + "'Po Lam', "
                 + "'HKUST', "
-                + "1460434796, "
+                + "1460444796, "
                 + "0, "
                 + "0, "
                 + "0, "
@@ -99,6 +115,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
                 + "1 "
                 + ");"
         );
+
         db.execSQL("INSERT INTO " + TABLE_TRIAL + " VALUES ("
                 + "2, "
                 + System.currentTimeMillis()/1000 + ", "
@@ -107,6 +124,7 @@ public class MyDBHelper extends SQLiteOpenHelper{
                 + "1 "
                 + ");"
         );
+
     }
 
     @Override

@@ -79,7 +79,7 @@ public class ShowRoute extends ListActivity {
 
         // Calling query method to retrieve records (table rows) cursor.
         myCursor = mydb.query(MyDBHelper.TABLE_TRIAL,
-                allColumns, MyDBHelper.COLUMN_TRIAL_USERROUTE_ID+"="+String.valueOf(rowId), null, null, null, null);
+                allColumns, MyDBHelper.COLUMN_TRIAL_USERROUTE_ID+"=" +rowId, null, null, null, null);
 
         // Specify the columns/fields to retrieve from database table
         String[] fromColumns = {
@@ -109,5 +109,6 @@ public class ShowRoute extends ListActivity {
 
         // Connect the dbAdapter to the ListView
         setListAdapter(dbAdapter);
+
     }
 }
