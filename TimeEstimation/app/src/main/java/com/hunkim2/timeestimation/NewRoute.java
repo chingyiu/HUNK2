@@ -53,28 +53,31 @@ public class NewRoute extends AppCompatActivity {
 
         btn_create = (Button) findViewById(R.id.button_create);
 
+        // When the "Create" button is clicked,
+        // invoke the Insertion to DB.
+        //      After that, back to the MainActivity
+        //      and update the list of route.
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                // execute query
                 long result = db.insertRoute(et_name.getText().toString(),
                         et_from.getText().toString(),
                         et_to.getText().toString(),
                         set_year, set_month, set_day,
                         set_hour, set_minute,
-                        12); // TODO: 12 should be get from GG API
+                        30); // TODO: "30 minutes" should be requested from GG API
 
+                // close the db after finish
                 db.close();
 
+                // close this Activity
                 NewRoute.this.finish();
-
+                // Go back to Main
                 Intent intent_request = new Intent(NewRoute.this, MainActivity.class);
                 NewRoute.this.startActivity(intent_request);
             }
         });
-
-
     }
 
     public void showDatePickerDialog() {
@@ -144,5 +147,4 @@ public class NewRoute extends AppCompatActivity {
                     }
                 }
             };
-
 }

@@ -50,11 +50,11 @@
         android:textSize="10dp"
         android:textStyle="italic"
         android:textColor="#ccc"
-        android:text="at"
+        android:text="leave at"
         />
 
     <TextView
-        android:id="@+id/routeArrival_month"
+        android:id="@+id/route_leave_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/routeStart"
@@ -69,12 +69,12 @@
         android:layout_alignBaseline="@+id/routeStart"
         android:layout_alignBottom="@+id/routeStart"
         android:layout_marginLeft="1dp"
-        android:layout_toRightOf="@+id/routeArrival_month"
+        android:layout_toRightOf="@+id/route_leave_month"
         android:textColor="#999"
         android:text="/"
         />
     <TextView
-        android:id="@+id/routeArrival_day"
+        android:id="@+id/route_leave_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/routeStart"
@@ -89,12 +89,12 @@
         android:layout_alignBaseline="@+id/routeStart"
         android:layout_alignBottom="@+id/routeStart"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/routeArrival_day"
+        android:layout_toRightOf="@+id/route_leave_day"
         android:textColor="#999"
         android:text=", "
         />
     <TextView
-        android:id="@+id/routeArrival_hour"
+        android:id="@+id/route_leave_hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/routeStart"
@@ -110,13 +110,13 @@
         android:layout_alignBaseline="@+id/routeStart"
         android:layout_alignBottom="@+id/routeStart"
         android:layout_marginLeft="1dp"
-        android:layout_toRightOf="@+id/routeArrival_hour"
+        android:layout_toRightOf="@+id/route_leave_hour"
         android:textColor="#999"
         android:textStyle="bold"
         android:text=":"
         />
     <TextView
-        android:id="@+id/routeArrival_minute"
+        android:id="@+id/route_leave_minute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/routeStart"

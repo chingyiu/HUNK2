@@ -9,6 +9,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
+    <!-- Some time before -->
+    <TextView
+        android:id="@+id/tv_tesTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+         />
+
     <TextView
         android:text="Current Time"
         android:layout_width="wrap_content"
@@ -17,6 +26,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/tv_curTime" />
+
+
 
     <TextView
         android:text="@string/hello_world"
@@ -47,6 +58,7 @@
         android:id="@+id/button" />
 
 
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -55,11 +67,20 @@
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true" >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="* tap the route to see the details"
+            />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="0dp"
-            android:paddingTop="0dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="10dp"
+
             >
 
             <TextView
@@ -107,9 +128,9 @@
                 android:textSize="10dp"
                 android:textStyle="italic"
                 android:textColor="#ccc"
-                android:text="at"
+                android:text="leave at"
                 />
-
+            <!-- hide for better display
             <TextView
                 android:id="@+id/titleMonth"
                 android:layout_width="wrap_content"
@@ -187,12 +208,12 @@
                 android:textColor="#999"
                 android:text="mm"
                 />
-
+            -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_toLeftOf="@+id/titleTimeEst"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@+id/titleAt"
                 android:text="Leave Time"
                 />
 

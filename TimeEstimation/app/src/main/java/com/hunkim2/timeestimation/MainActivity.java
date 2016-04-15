@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 // Database management Reference:
@@ -30,6 +32,11 @@ public class MainActivity extends ListActivity {
 
     Date d;
     SimpleDateFormat sdf;
+    String currentDateTimeString;
+
+    // TV for testing calendar
+    TextView tv_test;
+
 
     TextView tv;
 
@@ -39,15 +46,27 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
+        // ***** Testing ***** //
+        final Calendar cal = Calendar.getInstance();
+        // add 100 minutes before from NOW,
+        // expect to add the Estimation time
+        cal.add(Calendar.MINUTE, -100);
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm a");
+        String currentDateTimeString = sdf.format(cal.getTime());
+        tv_test = (TextView)findViewById(R.id.tv_tesTime);
+        tv_test.setText(currentDateTimeString);
+*/
+
         // We specify only those table fields/columns that we need in this activity / view.
         allColumns = new String[]{
                 MyDBHelper.COLUMN_USER_ROUTE_ID,
                 MyDBHelper.COLUMN_USER_ROUTE_START,
                 MyDBHelper.COLUMN_USER_ROUTE_END,
-                MyDBHelper.COLUMN_USER_ROUTE_MONTH,
-                MyDBHelper.COLUMN_USER_ROUTE_DAY,
-                MyDBHelper.COLUMN_USER_ROUTE_HOUR,
-                MyDBHelper.COLUMN_USER_ROUTE_MINUTE,
+                MyDBHelper.COLUMN_USER_ROUTE_L_MONTH,
+                MyDBHelper.COLUMN_USER_ROUTE_L_DAY,
+                MyDBHelper.COLUMN_USER_ROUTE_L_HOUR,
+                MyDBHelper.COLUMN_USER_ROUTE_L_MINUTE,
                 MyDBHelper.COLUMN_USER_ROUTE_ESTIMATION
         };
         //Pass "this" as the context
@@ -62,10 +81,10 @@ public class MainActivity extends ListActivity {
         String[] fromColumns = {
                 MyDBHelper.COLUMN_USER_ROUTE_START,
                 MyDBHelper.COLUMN_USER_ROUTE_END,
-                MyDBHelper.COLUMN_USER_ROUTE_MONTH,
-                MyDBHelper.COLUMN_USER_ROUTE_DAY,
-                MyDBHelper.COLUMN_USER_ROUTE_HOUR,
-                MyDBHelper.COLUMN_USER_ROUTE_MINUTE,
+                MyDBHelper.COLUMN_USER_ROUTE_L_MONTH,
+                MyDBHelper.COLUMN_USER_ROUTE_L_DAY,
+                MyDBHelper.COLUMN_USER_ROUTE_L_HOUR,
+                MyDBHelper.COLUMN_USER_ROUTE_L_MINUTE,
                 MyDBHelper.COLUMN_USER_ROUTE_ESTIMATION
         };
 
@@ -75,10 +94,10 @@ public class MainActivity extends ListActivity {
         int[] toViews = {
                 R.id.routeStart,
                 R.id.routeEnd,
-                R.id.routeArrival_month,
-                R.id.routeArrival_day,
-                R.id.routeArrival_hour,
-                R.id.routeArrival_minute,
+                R.id.route_leave_month,
+                R.id.route_leave_day,
+                R.id.route_leave_hour,
+                R.id.route_leave_minute,
                 R.id.routeEst
         };
 
@@ -93,15 +112,13 @@ public class MainActivity extends ListActivity {
         // Connect the dbAdapter to the ListView
         setListAdapter(dbAdapter);
 
-        //
+
         // Show the current time
         d = new Date();
         sdf = new SimpleDateFormat("hh:mm a");
-        String currentDateTimeString = sdf.format(d);
+        currentDateTimeString = sdf.format(d);
         tv = (TextView) findViewById(R.id.tv_curTime);
         tv.setText(currentDateTimeString);
-
-
     }
 /*
     @Override
@@ -128,10 +145,22 @@ public class MainActivity extends ListActivity {
 */
     // Implemented function for the Button (in activity_main.xml)
     // same function NAME should be used with the "onclick" of the Button
-
-    // ref: http://developer.android.com/training/basics/firstapp/building-ui.html
     public void toCreateRoute(View view) {
         Intent intent = new Intent(this, NewRoute.class);
+
+        startActivity(intent);
+    }
+
+    // Every listitem clicking will invoke this function
+    public void onListItemClick(ListView parent, View v,
+                                int position, long id) {
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, ShowRoute.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putLong("rowId", id);
+        intent.putExtras(bundle);
 
         startActivity(intent);
     }

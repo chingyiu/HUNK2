@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Sean on 13/4/2016.
@@ -18,17 +20,24 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     public final static String TABLE_USER_ROUTE = "User_Route"; //<-- table name
     //  "User_Route" table structure:
-    //  # attributes: 18
+    //  # attributes: 18+5 = 23
     public static final String COLUMN_USER_ROUTE_ID = "_id";
-    public static final String COLUMN_USER_ROUTE_NAME = "route_name";   // new
+    public static final String COLUMN_USER_ROUTE_NAME = "route_name";   // new-
     public static final String COLUMN_USER_ROUTE_START = "start_point";
     public static final String COLUMN_USER_ROUTE_END = "end_point";
-    // public static final String COLUMN_USER_ROUTE_ARRIVAL = "arrival_time";   // divided into below
-    public static final String COLUMN_USER_ROUTE_YEAR = "arrival_year";     // new
-    public static final String COLUMN_USER_ROUTE_MONTH = "arrival_month";   // new
-    public static final String COLUMN_USER_ROUTE_DAY = "arrival_day";       // new
-    public static final String COLUMN_USER_ROUTE_HOUR = "arrival_hour";     // new
-    public static final String COLUMN_USER_ROUTE_MINUTE = "arrival_minute"; // new
+    // User input
+    public static final String COLUMN_USER_ROUTE_YEAR = "arrival_year";     // new-
+    public static final String COLUMN_USER_ROUTE_MONTH = "arrival_month";   // new-
+    public static final String COLUMN_USER_ROUTE_DAY = "arrival_day";       // new-
+    public static final String COLUMN_USER_ROUTE_HOUR = "arrival_hour";     // new-
+    public static final String COLUMN_USER_ROUTE_MINUTE = "arrival_minute"; // new-
+
+    // Leave time: calculate before insert by our system~
+    public static final String COLUMN_USER_ROUTE_L_YEAR = "leave_year";     // new
+    public static final String COLUMN_USER_ROUTE_L_MONTH = "leave_month";   // new
+    public static final String COLUMN_USER_ROUTE_L_DAY = "leave_day";       // new
+    public static final String COLUMN_USER_ROUTE_L_HOUR = "leave_hour";     // new
+    public static final String COLUMN_USER_ROUTE_L_MINUTE = "leave_minute";// new
 
     public static final String COLUMN_USER_ROUTE_REPEAT = "repeat";
     public static final String COLUMN_USER_ROUTE_MON = "mon";
@@ -41,6 +50,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USER_ROUTE_ESTIMATION = "estimated_time";
 
 
+    // TODO: update the Trial Structure to better display in ShowRoute Activity
     public final static String TABLE_TRIAL = "Trial"; //<-- table name
     //  "User_Route" table structure:
     //  # attributes: 5
@@ -61,6 +71,11 @@ public class MyDBHelper extends SQLiteOpenHelper {
             + COLUMN_USER_ROUTE_DAY + " integer, "
             + COLUMN_USER_ROUTE_HOUR + " integer, "
             + COLUMN_USER_ROUTE_MINUTE + " integer, "
+            + COLUMN_USER_ROUTE_L_YEAR + " integer, "
+            + COLUMN_USER_ROUTE_L_MONTH + " integer, "
+            + COLUMN_USER_ROUTE_L_DAY + " integer, "
+            + COLUMN_USER_ROUTE_L_HOUR + " integer, "
+            + COLUMN_USER_ROUTE_L_MINUTE + " integer, "
             + COLUMN_USER_ROUTE_REPEAT + " integer default 0, "
             + COLUMN_USER_ROUTE_MON + " integer default 0, "
             + COLUMN_USER_ROUTE_TUE + " integer default 0, "
@@ -106,6 +121,11 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 + "13, "                // day
                 + "15, "                // hour
                 + "59, "                // minute
+                + "2016, "              // year
+                + "04, "                // month
+                + "13, "                // day
+                + "15, "                // hour
+                + "41, "                // minute
                 + "0, "             // repeat
                 + "0, "             // mon
                 + "0, "             // tue
@@ -127,7 +147,12 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 + "04, "                // month
                 + "13, "                // day
                 + "15, "                // hour
-                + "59, "                // minute
+                + "39, "                // minute
+                + "2016, "              // year
+                + "04, "                // month
+                + "13, "                // day
+                + "15, "                // hour
+                + "19, "                // minute
                 + "0, "
                 + "0, "
                 + "0, "
@@ -136,7 +161,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 + "0, "
                 + "0, "
                 + "0, "
-                + "20 "             // est. time (min at the moment)
+                + "200 "             // est. time (min at the moment)
                 + ");"
         );
 
@@ -177,7 +202,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
                             int RHour, int RMinute,
                             int REstimation)
     {
+        // Compute the Leaving time before insert to DB
+        //      the update part may also need to compute again
+        //      compute avg?
+        final Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, RYear);
+        cal.set(Calendar.MONTH, RMonth);
+        cal.set(Calendar.DAY_OF_MONTH, RDay);
+        cal.set(Calendar.HOUR, RHour);
+        cal.set(Calendar.MINUTE, RMinute);
+        // expect to minus the Estimation time
+        cal.add(Calendar.MINUTE, -REstimation);
+
         try{
+            // some attributes have default values
+            // so that it can skip some attributes in here
             ContentValues cv = new ContentValues();
             cv.put("route_name", RName);
             cv.put("start_point", RStart);
@@ -187,9 +226,15 @@ public class MyDBHelper extends SQLiteOpenHelper {
             cv.put("arrival_day", RDay);
             cv.put("arrival_hour", RHour);
             cv.put("arrival_minute", RMinute);
+            cv.put("leave_year", cal.get(Calendar.YEAR));
+            cv.put("leave_month", cal.get(Calendar.MONTH));
+            cv.put("leave_day", cal.get(Calendar.DAY_OF_MONTH));
+            cv.put("leave_hour", cal.get(Calendar.HOUR_OF_DAY));
+            cv.put("leave_minute", cal.get(Calendar.MINUTE));
             cv.put("estimated_time", REstimation);
 
             return getWritableDatabase().insert(TABLE_USER_ROUTE, null, cv);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
