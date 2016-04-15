@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
+    >
+
+    <TextView
+        android:id="@+id/routeStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="From"
+        android:textColor="#3399CC"
+        />
+
+    <TextView
+        android:id="@+id/textViewTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/routeStart"
+        android:layout_alignBottom="@+id/routeStart"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/routeStart"
+        android:textSize="10dp"
+        android:textStyle="italic"
+        android:textColor="#ccc"
+        android:text="to"
+        />
+
+    <TextView
+        android:id="@+id/routeEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/routeStart"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/textViewTo"
+        android:text="Dest"
+        android:textColor="#3399CC"
+        />
+
+    <TextView
+        android:id="@+id/routeArrival"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/routeStart"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/routeEnd"
+        android:text="ArrivalTime"
+        android:textColor="#999"
+        android:textSize="10dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/routeRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Repeat" />
+
+</RelativeLayout>

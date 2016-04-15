@@ -1,0 +1,219 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <TextView
+        android:text="Current Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv_curTime" />
+
+    <TextView
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView" />
+
+    <!--
+      to create a new UI
+      value of "text" attribute should be
+      added in /res/strings.xml
+
+      "onClick" function should be implemented
+      in your_activity.java
+    -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_path"
+        android:onClick="toCreateRoute"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp"
+            android:paddingTop="0dp"
+            >
+
+            <TextView
+                android:id="@+id/titleFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="From"
+                android:textColor="#3399CC"
+                />
+
+            <TextView
+                android:id="@+id/titleTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/titleFrom"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@+id/titleFrom"
+                android:textSize="10dp"
+                android:textStyle="italic"
+                android:textColor="#ccc"
+                android:text="to"
+                />
+
+            <TextView
+                android:id="@+id/titleDest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@+id/titleTo"
+                android:text="Destination"
+                android:textColor="#3399CC"
+                />
+
+            <TextView
+                android:id="@+id/titleAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/titleFrom"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@+id/titleDest"
+                android:textSize="10dp"
+                android:textStyle="italic"
+                android:textColor="#ccc"
+                android:text="at"
+                />
+
+            <TextView
+                android:id="@+id/titleMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@+id/titleAt"
+                android:textColor="#999"
+                android:textStyle="italic"
+                android:text="MM"
+                />
+            <TextView
+                android:id="@+id/titleSlash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/titleFrom"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="1dp"
+                android:layout_toRightOf="@+id/titleMonth"
+                android:textColor="#999"
+                android:text="/"
+                />
+            <TextView
+                android:id="@+id/titleDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="1dp"
+                android:layout_toRightOf="@+id/titleSlash"
+                android:textColor="#999"
+                android:text="DD"
+                />
+            <TextView
+                android:id="@+id/titleComma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/titleFrom"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/titleDay"
+                android:textColor="#999"
+                android:text=", "
+                />
+            <TextView
+                android:id="@+id/titleHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/titleComma"
+                android:textColor="#999"
+                android:textStyle="bold"
+                android:text="hh"
+                />
+            <TextView
+                android:id="@+id/titleColon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/titleFrom"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="1dp"
+                android:layout_toRightOf="@+id/titleHour"
+                android:textColor="#999"
+                android:textStyle="bold"
+                android:text=":"
+                />
+            <TextView
+                android:id="@+id/titleMinute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/titleFrom"
+                android:layout_marginLeft="1dp"
+                android:layout_toRightOf="@+id/titleColon"
+                android:textStyle="bold"
+                android:textColor="#999"
+                android:text="mm"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_toLeftOf="@+id/titleTimeEst"
+                android:text="Leave Time"
+                />
+
+            <TextView
+                android:id="@+id/titleTimeEst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Time Est."
+                />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

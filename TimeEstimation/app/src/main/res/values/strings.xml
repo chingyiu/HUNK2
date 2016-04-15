@@ -1,6 +1,6 @@
 <resources>
     <!-- string for all -->
-    <string name="app_name">First app</string>
+    <string name="app_name">TimeEstimation</string>
     <string name="create">Create</string>
     <string name="back">Back</string>
 

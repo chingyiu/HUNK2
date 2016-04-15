@@ -1,4 +1,4 @@
-package com.hunkim2.firstapp;
+package com.hunkim2.timeestimation;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -9,16 +9,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+// Database management Reference:
+// http://jim690701.blogspot.hk/2012/06/android-sqlite.html
+// https://www.youtube.com/watch?v=d_PjDM4nFxI
 
 public class MainActivity extends ListActivity {
 
@@ -35,19 +34,21 @@ public class MainActivity extends ListActivity {
     TextView tv;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // We specify only those table fields/columns that we need in this activity / view.
-        allColumns = new String[] {
+        allColumns = new String[]{
                 MyDBHelper.COLUMN_USER_ROUTE_ID,
                 MyDBHelper.COLUMN_USER_ROUTE_START,
                 MyDBHelper.COLUMN_USER_ROUTE_END,
-                MyDBHelper.COLUMN_USER_ROUTE_ARRIVAL,
-                MyDBHelper.COLUMN_USER_ROUTE_REPEAT
+                MyDBHelper.COLUMN_USER_ROUTE_MONTH,
+                MyDBHelper.COLUMN_USER_ROUTE_DAY,
+                MyDBHelper.COLUMN_USER_ROUTE_HOUR,
+                MyDBHelper.COLUMN_USER_ROUTE_MINUTE,
+                MyDBHelper.COLUMN_USER_ROUTE_ESTIMATION
         };
         //Pass "this" as the context
         myDBHelper = new MyDBHelper(this);
@@ -61,8 +62,11 @@ public class MainActivity extends ListActivity {
         String[] fromColumns = {
                 MyDBHelper.COLUMN_USER_ROUTE_START,
                 MyDBHelper.COLUMN_USER_ROUTE_END,
-                MyDBHelper.COLUMN_USER_ROUTE_ARRIVAL,
-                MyDBHelper.COLUMN_USER_ROUTE_REPEAT
+                MyDBHelper.COLUMN_USER_ROUTE_MONTH,
+                MyDBHelper.COLUMN_USER_ROUTE_DAY,
+                MyDBHelper.COLUMN_USER_ROUTE_HOUR,
+                MyDBHelper.COLUMN_USER_ROUTE_MINUTE,
+                MyDBHelper.COLUMN_USER_ROUTE_ESTIMATION
         };
 
         // Specify the view id in the row.xml to load the data.
@@ -71,8 +75,11 @@ public class MainActivity extends ListActivity {
         int[] toViews = {
                 R.id.routeStart,
                 R.id.routeEnd,
-                R.id.routeArrival,
-                R.id.routeRepeat
+                R.id.routeArrival_month,
+                R.id.routeArrival_day,
+                R.id.routeArrival_hour,
+                R.id.routeArrival_minute,
+                R.id.routeEst
         };
 
         // Creating SimpleCursorAdapter that
@@ -88,16 +95,15 @@ public class MainActivity extends ListActivity {
 
         //
         // Show the current time
-        d=new Date();
-        sdf=new SimpleDateFormat("hh:mm a");
+        d = new Date();
+        sdf = new SimpleDateFormat("hh:mm a");
         String currentDateTimeString = sdf.format(d);
-        tv = (TextView)findViewById(R.id.tv_curTime);
+        tv = (TextView) findViewById(R.id.tv_curTime);
         tv.setText(currentDateTimeString);
 
 
-
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -119,7 +125,7 @@ public class MainActivity extends ListActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
     // Implemented function for the Button (in activity_main.xml)
     // same function NAME should be used with the "onclick" of the Button
 
